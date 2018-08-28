@@ -25,7 +25,10 @@ and what you should write is the sayHi function that makes the code above work,
 
 
   //Code Here for first
-  
+
+  function first(arr, cb) {
+    return cb(arr[0]);
+  }
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -40,6 +43,10 @@ first(names, function(firstName){
 
 
   //Code Here for last
+
+function last(arr, cb) {
+  return cb(arr[arr.length - 1]);
+}  
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 last(names, function(lastName){
@@ -59,6 +66,10 @@ last(names, function(lastName){
 
   //Code Here for multiply
 
+function multiply(num1, num2, cb) {
+  return cb(num1 * num2);
+}  
+
 multiply(4, 3, function(answer){
   console.log('The answer is ' + answer); //should console.log 12
 })
@@ -74,6 +85,15 @@ multiply(4, 3, function(answer){
 
 
   //Code Here for contains
+
+function contains(arr, item, cb) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] == item) {
+      return cb(true);
+    }
+  }
+  return cb(false);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains(names, 'Colt', function(result){
@@ -95,6 +115,20 @@ contains(names, 'Colt', function(result){
 
     //Code Here for uniq
 
+function uniq(arr, cb) {
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = 0; j < arr.length; j++) {
+      if ( i != j) {
+        if (arr[j] === arr[i]) {
+          arr.splice(j, 1);
+          j--;
+        }
+      }
+    }
+  }
+  return cb(arr);
+}    
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -110,6 +144,12 @@ uniq(names, function(uniqArr){
 
 
     //Code Here for each
+
+function each(arr, cb) {
+  for (var i = 0; i < arr.length; i++) {
+    cb(arr[i], i);
+  }
+}    
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
@@ -127,6 +167,14 @@ each(names, function(item, indice){
 
 
  //code here for getUserById
+
+ function getUserById(arr, id, cb) {
+   for (var i = 0; i < arr.length; i++) {
+     if (arr[i].id == id) {
+       return cb(arr[i]);
+     }
+   }
+ }
 
 var users = [
   {
